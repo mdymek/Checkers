@@ -1,11 +1,12 @@
 #include "User.hpp"
 
-User::User( sf::Color color, Board& board ){
+User::User( sf::Color color, Board& board ):
+    m_color( color )
+{
     int x = 0;
     int y = 9;
     for ( int i = 0; i < 20; i++ ){
-        //std::cout << x << " " << y << std::endl;
-        Pawn* pawn = new Pawn(this, board.m_squares[x][y]);
+        Pawn* pawn = new Pawn(this, board.get(x, y));
         m_pawns.push_back(pawn);
 
         x += 2;
@@ -16,7 +17,6 @@ User::User( sf::Color color, Board& board ){
         }
 
     }
-    m_color = color;
 }
 
 User::~User(){}

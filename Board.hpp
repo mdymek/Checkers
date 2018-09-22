@@ -11,15 +11,15 @@ public:
     Board();
     ~Board();
 
+    Square* get( int, int );
+
     void checkSquare( int, int );
-    void checkOptions( int, int, bool, Square* );
     void deleteOptions();
 
     void movePawn( Square* );
 
     void draw( sf::RenderWindow& );
 private:
-    friend class User;
     std::vector < std::vector <Square*> > m_squares;
 };
 #endif

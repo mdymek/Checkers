@@ -17,39 +17,15 @@ Board::Board(){
 
 Board::~Board(){}
 
+Square* Board::get( int x, int y ){ return m_squares[x][y]; }
+
 void Board::checkSquare( int x, int y ){
     if ( !m_squares[x][y]->isFree() ){
-        checkOptions(x, y, true, m_squares[x][y]);
+        m_squares[x][y]->getPawn()->checkOptions(x, y, true, this);
     }
     else {
         movePawn( m_squares[x][y] );
         deleteOptions();
-    }
-}
-
-void Board::checkOptions( int x, int y, bool first, Square* square ){
-    if ( m_squares[x][y]->isFree() ){
-        m_squares[x][y]->setOption( square );
-    }
-    if ( x - 1 >= 0 && y - 1 >= 0 ){
-        if ( m_squares[x-1][y-1]->isFree() ){
-            if ( first ) m_squares[x-1][y-1]->setOption( square );
-        }
-        else if ( x - 2 >= 0 && y - 2 >= 0 ){
-            if ( m_squares[x-2][y-2]->isFree()){
-                checkOptions( x - 2, y - 2, false, square );
-            }
-        }
-    }
-    if ( x + 1 < 10 && y - 1 >= 0 ){
-        if ( m_squares[x+1][y-1]->isFree()){
-            if ( first ) m_squares[x+1][y-1]->setOption( square );
-        }
-        else if ( x + 2 < 10 && y - 2 >= 0 ){
-            if ( m_squares[x+2][y-2]->isFree() ){
-                checkOptions( x + 2, y - 2, false, square );
-            }
-        }
     }
 }
 
@@ -65,8 +41,6 @@ void Board::movePawn( Square* destination ){
     if ( destination->getOption() != nullptr ){
         Square* origin = destination->getOption();
         Pawn* pawn = origin->getPawn();
-        origin->removePawn();
-        destination->addPawn( pawn );
         pawn->move( destination );
     }
 }

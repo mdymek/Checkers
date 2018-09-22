@@ -1,13 +1,14 @@
 #include "Square.hpp"
 
-Square::Square( sf::Vector2f position, sf::Color color ){
-    m_isOption = false;
-    m_option = nullptr;
-    m_position = position;
+Square::Square( sf::Vector2f position, sf::Color color ):
+    m_isOption( false ),
+    m_option( nullptr ),
+    m_position( position ),
+    m_pawn( nullptr )
+{
     m_shape.setSize( sf::Vector2f(50,50) );
     m_shape.setFillColor( color );
     m_shape.setPosition( position );
-    m_pawn = nullptr;
 }
 
 Square::~Square(){}
