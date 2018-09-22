@@ -15,9 +15,7 @@ public:
 
     void checkSquare( int, int );
     void deleteOptions();
-
     void movePawn( Square* );
-
     void draw( sf::RenderWindow& );
 private:
     std::vector < std::vector <Square*> > m_squares;
