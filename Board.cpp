@@ -17,6 +17,38 @@ Board::Board(){
 
 Board::~Board(){}
 
+void Board::checkSquare( int x, int y ){
+    if ( !m_squares[x][y]->isFree() ){
+        checkOptions(x, y, true);
+    }
+}
+
+void Board::checkOptions( int x, int y, bool first ){
+    if ( m_squares[x][y]->isFree() ){
+        m_squares[x][y]->setOption();
+    }
+    if ( x - 1 >= 0 && y - 1 >= 0 ){
+        if ( m_squares[x-1][y-1]->isFree() ){
+            if ( first ) m_squares[x-1][y-1]->setOption();
+        }
+        else if ( x - 2 >= 0 && y - 2 >= 0 ){
+            if ( m_squares[x-2][y-2]->isFree()){
+                checkOptions( x - 2, y - 2, false );
+            }
+        }
+    }
+    if ( x + 1 < 10 && y - 1 >= 0 ){
+        if ( m_squares[x+1][y-1]->isFree()){
+            if ( first ) m_squares[x+1][y-1]->setOption();
+        }
+        else if ( x + 2 < 10 && y - 2 >= 0 ){
+            if ( m_squares[x+2][y-2]->isFree() ){
+                checkOptions( x + 2, y - 2, false );
+            }
+        }
+    }
+}
+
 void Board::draw( sf::RenderWindow& window ){
     for ( int x = 0; x < 10; x++ ){
         for ( int y = 0; y < 10; y++ ){

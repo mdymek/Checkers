@@ -11,6 +11,8 @@ public:
     Board();
     ~Board();
 
+    void checkSquare( int, int );
+    void checkOptions( int, int, bool );
     void draw( sf::RenderWindow& );
 private:
     friend class User;

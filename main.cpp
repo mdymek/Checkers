@@ -25,6 +25,14 @@ int main(){
                     window.close();
                 }
             }
+            else if( event.type == sf::Event::MouseButtonPressed ){
+                wait = false;
+                board.checkSquare(event.mouseButton.x/51, event.mouseButton.y/51);
+                std::cout << "x: " << event.mouseButton.x;
+                std::cout << "y: " << event.mouseButton.y;
+                std::cout << std::endl;
+                std::cout << "square: " << event.mouseButton.x/51 << " " << event.mouseButton.y/51 << std::endl;
+            }
         }
     }
     return 0;
