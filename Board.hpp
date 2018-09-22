@@ -12,7 +12,11 @@ public:
     ~Board();
 
     void checkSquare( int, int );
-    void checkOptions( int, int, bool );
+    void checkOptions( int, int, bool, Square* );
+    void deleteOptions();
+
+    void movePawn( Square* );
+
     void draw( sf::RenderWindow& );
 private:
     friend class User;

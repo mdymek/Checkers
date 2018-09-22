@@ -12,6 +12,8 @@ public:
     Pawn( User*, Square* );
     ~Pawn();
 
+    void move( Square* );
+
     sf::Color getColor() const;
     sf::CircleShape getShape() const;
 private:

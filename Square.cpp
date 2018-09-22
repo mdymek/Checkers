@@ -2,6 +2,7 @@
 
 Square::Square( sf::Vector2f position, sf::Color color ){
     m_isOption = false;
+    m_option = nullptr;
     m_position = position;
     m_shape.setSize( sf::Vector2f(50,50) );
     m_shape.setFillColor( color );
@@ -11,10 +12,20 @@ Square::Square( sf::Vector2f position, sf::Color color ){
 
 Square::~Square(){}
 
-void Square::setOption(){ m_isOption = true; }
+void Square::setOption( Square* option ){
+    m_isOption = true;
+    m_option = option;
+}
+void Square::unsetOption(){
+    m_isOption = false;
+    m_option = nullptr;
+}
+
+Square* Square::getOption() const{ return m_option; }
 
 bool Square::isFree() const{ return m_pawn == nullptr; }
 void Square::addPawn( Pawn* pawn ) { m_pawn = pawn; }
+Pawn* Square::getPawn() const{ return m_pawn; }
 void Square::removePawn() { m_pawn = nullptr; }
 
 void Square::draw( sf::RenderWindow& window ){

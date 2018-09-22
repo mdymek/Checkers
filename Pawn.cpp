@@ -9,5 +9,7 @@ Pawn::Pawn( User* user, Square* square ){
 
 Pawn::~Pawn(){}
 
+void Pawn::move( Square* destination ) { m_square = destination; }
+
 sf::Color Pawn::getColor() const{ return m_user->getColor(); }
 sf::CircleShape Pawn::getShape() const { return m_shape; }
