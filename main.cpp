@@ -1,4 +1,8 @@
 #include "Board.hpp"
+#include "Square.hpp"
+#include "User.hpp"
+#include "Pawn.hpp"
+#include "Man.hpp"
 
 int main(){
     bool wait = false;

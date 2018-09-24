@@ -1,4 +1,5 @@
 #include "User.hpp"
+#include "Man.hpp"
 
 User::User( sf::Color color, Board& board ):
     m_color( color )
@@ -6,8 +7,8 @@ User::User( sf::Color color, Board& board ):
     int x = 0;
     int y = 9;
     for ( int i = 0; i < 20; i++ ){
-        Pawn* pawn = new Pawn(this, board.get(x, y));
-        m_pawns.push_back(pawn);
+        Man* man = new Man(this, board.get(x, y));
+        m_pawns.push_back(man);
 
         x += 2;
         if ( x > 9 ){
@@ -15,7 +16,6 @@ User::User( sf::Color color, Board& board ):
             y--;
             if ( y % 2 != 0 ) x = 0;
         }
-
     }
 }
 

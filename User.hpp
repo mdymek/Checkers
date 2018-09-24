@@ -1,9 +1,11 @@
 #ifndef USER_H
 #define USER_H
+
 #include <iostream>
 #include <vector>
-#include "Pawn.hpp"
 #include "Board.hpp"
+#include "Pawn.hpp"
+
 
 class Board;
 class Pawn;
