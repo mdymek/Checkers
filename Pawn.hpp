@@ -9,8 +9,10 @@ class User;
 class Square;
 class Pawn {
 public:
-    explicit Pawn( User*, Square* );
+    explicit Pawn( int, User*, Square* );
     virtual ~Pawn();
+
+    int getId() const;
 
     sf::Color getColor() const;
     sf::CircleShape getShape() const;
@@ -19,6 +21,7 @@ public:
     virtual void movePawn( int, int, Board* ) =0;
     virtual void checkOptions( int, int, bool, Board* ) =0;
 protected:
+    int m_id;
     User* m_user;
     Square* m_square;
     sf::CircleShape m_shape;

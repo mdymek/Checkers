@@ -7,8 +7,8 @@ User::User( sf::Color color, Board& board ):
     int x = 0;
     int y = 9;
     for ( int i = 0; i < 20; i++ ){
-        Man* man = new Man(this, board.get(x, y));
-        m_pawns.push_back(man);
+        Man* man = new Man( i, this, board.get(x, y) );
+        m_pawns.push_back( man );
 
         x += 2;
         if ( x > 9 ){
@@ -20,5 +20,9 @@ User::User( sf::Color color, Board& board ):
 }
 
 User::~User(){}
+
+void User::changePawn( int i, Pawn* pawn ){
+    m_pawns[i] = pawn;
+}
 
 sf::Color User::getColor() const{ return m_color; }

@@ -13,7 +13,8 @@ class User {
 public:
     User( sf::Color, Board& );
     ~User();
-    
+
+    void changePawn( int, Pawn* );
     sf::Color getColor() const;
 private:
     std::vector<Pawn*> m_pawns;

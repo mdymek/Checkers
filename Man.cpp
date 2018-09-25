@@ -29,8 +29,10 @@ void Man::checkOptions( int x, int y, bool first, Board* board ){
 void Man::movePawn( int x, int y, Board* board ){
     Square* destination = board->get(x, y);
     if ( y == 0 ){
-        King* king = new King( m_user, destination);
+        King* king = new King( m_id, m_user, destination );
+        m_user->changePawn( m_id, king );
         m_square->removePawn();
+
     }
     else {
         Square* origin = m_square;
