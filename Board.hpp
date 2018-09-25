@@ -13,7 +13,7 @@ public:
 
     Square* get( int, int );
 
-    void checkSquare( int, int );
+    bool checkSquare( int, int );
     void deleteOptions();
     void movePawn( int, int );
     void draw( sf::RenderWindow& );

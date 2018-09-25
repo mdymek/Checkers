@@ -20,9 +20,10 @@ Board::~Board(){}
 
 Square* Board::get( int x, int y ){ return m_squares[x][y]; }
 
-void Board::checkSquare( int x, int y ){
+bool Board::checkSquare( int x, int y ){
+    bool play = true;
     if ( !m_squares[x][y]->isFree() ){
-        m_squares[x][y]->getPawn()->checkOptions(x, y, true, this);
+        m_squares[x][y]->getPawn()->checkOptions(x, y, play, this);
     }
     else {
         if ( m_squares[x][y]->getOption() != nullptr ) {
@@ -30,6 +31,7 @@ void Board::checkSquare( int x, int y ){
         }
         deleteOptions();
     }
+    return play;
 }
 
 void Board::deleteOptions(){

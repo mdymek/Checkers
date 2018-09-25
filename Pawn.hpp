@@ -19,7 +19,7 @@ public:
     User* getUser() const;
 
     virtual void movePawn( int, int, Board* ) =0;
-    virtual void checkOptions( int, int, bool, Board* ) =0;
+    virtual void checkOptions( int, int, bool&, Board* ) =0;
 protected:
     int m_id;
     User* m_user;

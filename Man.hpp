@@ -7,7 +7,7 @@ class Board;
 class Man: public Pawn {
 public:
     using Pawn::Pawn;
-    void checkOptions( int, int, bool, Board* );
+    void checkOptions( int, int, bool&, Board* );
     void movePawn( int, int, Board* );
 };
 #endif
