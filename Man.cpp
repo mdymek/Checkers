@@ -25,3 +25,17 @@ void Man::checkOptions( int x, int y, bool first, Board* board ){
         }
     }
 }
+
+void Man::movePawn( int x, int y, Board* board ){
+    Square* destination = board->get(x, y);
+    if ( y == 0 ){
+        King* king = new King( m_user, destination);
+        m_square->removePawn();
+    }
+    else {
+        Square* origin = m_square;
+        m_square = destination;
+        origin->removePawn();
+        destination->addPawn(this);
+    }
+}

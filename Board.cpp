@@ -1,4 +1,5 @@
 #include "Board.hpp"
+#include "King.hpp"
 
 Board::Board(){
     sf::Color color = sf::Color::White;
@@ -24,7 +25,9 @@ void Board::checkSquare( int x, int y ){
         m_squares[x][y]->getPawn()->checkOptions(x, y, true, this);
     }
     else {
-        movePawn( m_squares[x][y] );
+        if ( m_squares[x][y]->getOption() != nullptr ) {
+            m_squares[x][y]->getOption()->getPawn()->movePawn( x, y, this );
+        }
         deleteOptions();
     }
 }
@@ -34,14 +37,6 @@ void Board::deleteOptions(){
         for ( int y = 0; y < 10; y++ ){
             m_squares[x][y]->unsetOption();
         }
-    }
-}
-
-void Board::movePawn( Square* destination ){
-    if ( destination->getOption() != nullptr ){
-        Square* origin = destination->getOption();
-        Pawn* pawn = origin->getPawn();
-        pawn->move( destination );
     }
 }
 

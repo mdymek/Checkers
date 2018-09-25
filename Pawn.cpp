@@ -16,10 +16,3 @@ Pawn::~Pawn(){
 sf::Color Pawn::getColor() const{ return m_user->getColor(); }
 sf::CircleShape Pawn::getShape() const { return m_shape; }
 User* Pawn::getUser() const{ return m_user; }
-
-void Pawn::move( Square* destination ) {
-    Square* origin = m_square;
-    m_square = destination;
-    origin->removePawn();
-    destination->addPawn(this);
-}

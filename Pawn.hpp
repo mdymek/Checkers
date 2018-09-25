@@ -16,7 +16,7 @@ public:
     sf::CircleShape getShape() const;
     User* getUser() const;
 
-    void move( Square* );
+    virtual void movePawn( int, int, Board* ) =0;
     virtual void checkOptions( int, int, bool, Board* ) =0;
 protected:
     User* m_user;

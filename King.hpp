@@ -1,10 +1,10 @@
-#ifndef MAN_H
-#define MAN_H
+#ifndef KING_H
+#define KING_H
 
-#include "King.hpp"
+#include "Pawn.hpp"
 
 class Board;
-class Man: public Pawn {
+class King: public Pawn {
 public:
     using Pawn::Pawn;
     void checkOptions( int, int, bool, Board* );
