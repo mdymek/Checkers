@@ -14,6 +14,8 @@ public:
     void unsetOption();
     Square* getOption() const;
 
+    sf::Vector2f getPosition() const;
+
     bool isFree() const;
     void addPawn( Pawn* );
     Pawn* getPawn() const;

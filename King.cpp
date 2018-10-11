@@ -1,6 +1,6 @@
 #include "King.hpp"
 
-void King::checkOptions( int t_x, int t_y, bool& first, Board* board ){
+void King::checkOptions( int t_x, int t_y, bool& play, bool first, Board* board ){
     first = false;
     int x = t_x + 1;
     int y = t_y + 1;
@@ -75,4 +75,5 @@ void King::movePawn( int x, int y, Board* board ){
     m_square = destination;
     origin->removePawn();
     destination->addPawn(this);
+    m_moved = true;
 }

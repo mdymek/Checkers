@@ -7,7 +7,7 @@ Board::Board(){
         std::vector <Square*> column;
         for ( int y = 0; y < 10; y++ ){
             //std::cout << "x y " << x << " " << y << std::endl;
-            Square* square = new Square(sf::Vector2f(51*x, 51*y), color);
+            Square* square = new Square(sf::Vector2f(x, y), color);
             column.push_back(square);
             color = (color == sf::Color::White ? sf::Color::Black : sf::Color::White);
         }
@@ -20,16 +20,21 @@ Board::~Board(){}
 
 Square* Board::get( int x, int y ){ return m_squares[x][y]; }
 
-bool Board::checkSquare( int x, int y ){
+bool Board::checkSquare( int x, int y, User* user, bool& first ){
     bool play = true;
-    if ( !m_squares[x][y]->isFree() ){
-        m_squares[x][y]->getPawn()->checkOptions(x, y, play, this);
+    if ( !m_squares[x][y]->isFree() && m_squares[x][y]->getPawn()->getUser() == user && (first || m_squares[x][y]->getPawn()->ifUsed()) ){
+        deleteOptions();
+        m_squares[x][y]->getPawn()->checkOptions(x, y, play, first, this);
     }
     else {
         if ( m_squares[x][y]->getOption() != nullptr ) {
             m_squares[x][y]->getOption()->getPawn()->movePawn( x, y, this );
+            first = false;
         }
         deleteOptions();
+    }
+    if ( play == false ){
+        user->reset();
     }
     return play;
 }

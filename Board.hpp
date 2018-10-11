@@ -4,7 +4,9 @@
 #include <iostream>
 #include <vector>
 #include "Square.hpp"
+#include "User.hpp"
 
+class User;
 class Square;
 class Board {
 public:
@@ -13,7 +15,7 @@ public:
 
     Square* get( int, int );
 
-    bool checkSquare( int, int );
+    bool checkSquare( int, int, User*, bool& );
     void deleteOptions();
     void movePawn( int, int );
     void draw( sf::RenderWindow& );
