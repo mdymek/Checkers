@@ -40,7 +40,13 @@ User::User( int id, sf::Color color, Board& board ):
 User::~User(){}
 
 void User::changePawn( int i, Pawn* pawn ){
+    //delete m_pawns[i];
     m_pawns[i] = pawn;
+}
+
+void User::deletePawn( int i ){
+    //delete m_pawns[i];
+    m_pawns[i] = nullptr;
 }
 
 sf::Color User::getColor() const{ return m_color; }
@@ -48,11 +54,7 @@ int User::getId() const{ return m_id; }
 
 void User::reset(){
     for( int i = 0; i < 20; i++ ){
-        if( m_pawns[i]->getSquare() == nullptr ) {
-            //delete m_pawns[i];
-            m_pawns[i] = nullptr;
-        }
-        else {
+        if ( m_pawns[i] != nullptr ) {
             m_pawns[i]->reset();
         }
     }

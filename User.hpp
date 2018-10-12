@@ -15,6 +15,8 @@ public:
     ~User();
 
     void changePawn( int, Pawn* );
+    void deletePawn( int );
+
     sf::Color getColor() const;
     int getId() const;
     void reset();

@@ -37,7 +37,7 @@ int main(){
                     }
                 }
                 else if( event.type == sf::Event::MouseButtonPressed ){
-                    std::cout << turn << std::endl;
+                    std::cout << "tura: " << turn << std::endl;
                     wait = false;
                     play = board.checkSquare(event.mouseButton.x/51, event.mouseButton.y/51, (turn == 1 ? player1 : player2 ), first);
                 }

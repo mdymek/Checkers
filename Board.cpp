@@ -21,21 +21,31 @@ Board::~Board(){}
 Square* Board::get( int x, int y ){ return m_squares[x][y]; }
 
 bool Board::checkSquare( int x, int y, User* user, bool& first ){
+    std::cout << "kwadrat: " << x << " " << y << " pionek: " << ( m_squares[x][y]->isFree() ? -1 : m_squares[x][y]->getPawn()->getId()) << std::endl;
     bool play = true;
-    if ( !m_squares[x][y]->isFree() && m_squares[x][y]->getPawn()->getUser() == user && (first || m_squares[x][y]->getPawn()->ifUsed()) ){
-        deleteOptions();
-        m_squares[x][y]->getPawn()->checkOptions(x, y, play, first, this);
+    std::cout << "user: " << user->getId() << std::endl;
+    if ( !m_squares[x][y]->isFree() ){
+        if ( m_squares[x][y]->getPawn()->getUser() == user && (first || m_squares[x][y]->getPawn()->ifUsed()) ){
+            deleteOptions();
+            m_squares[x][y]->getPawn()->checkOptionsCapture(x, y, play, this);
+            if ( play ) std::cout << "możliwość bicia" << std::endl;
+            if ( !play && first ){
+                m_squares[x][y]->getPawn()->checkOptionsMove(x, y, play, this);
+            }
+        }
     }
     else {
         if ( m_squares[x][y]->getOption() != nullptr ) {
-            m_squares[x][y]->getOption()->getPawn()->movePawn( x, y, this );
+            play = m_squares[x][y]->getOption()->getPawn()->movePawn( x, y, this );
             first = false;
         }
         deleteOptions();
     }
     if ( play == false ){
+        std::cout << "Reset" << std::endl;
         user->reset();
     }
+    std::cout << "play: " << play << std::endl;
     return play;
 }
 

@@ -23,8 +23,9 @@ public:
     sf::CircleShape getShape() const;
     User* getUser() const;
 
-    virtual void movePawn( int, int, Board* ) =0;
-    virtual void checkOptions( int, int, bool&, bool, Board* ) =0;
+    virtual bool movePawn( int, int, Board* ) =0;
+    virtual void checkOptionsCapture( int, int, bool&, Board* ) =0;
+    virtual void checkOptionsMove( int, int, bool&, Board* ) =0;
 protected:
     int m_id;
     bool m_moved;
