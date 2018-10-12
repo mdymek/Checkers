@@ -1,3 +1,5 @@
+#include "consts.h"
+
 #include "Pawn.hpp"
 
 Pawn::Pawn( int id, User* user, Square* square ):
@@ -11,9 +13,7 @@ Pawn::Pawn( int id, User* user, Square* square ):
 }
 
 Pawn::~Pawn(){
-    std::cout << "usunięcie pionka " << m_id << std::endl;
-    delete m_user;
-    delete m_square;
+    if ( DEBUG ) std::cout << "usunięcie pionka " << m_id << std::endl;
 }
 
 void Pawn::setSquare( Square* square ){ m_square = square; }

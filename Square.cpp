@@ -37,7 +37,6 @@ void Square::draw( sf::RenderWindow& window ){
     }
     window.draw( m_shape );
     m_shape.setFillColor(color);
-    //m_isOption = false;
     if( m_pawn != nullptr ){
         sf::CircleShape pawn = m_pawn->getShape();
         pawn.setFillColor( m_pawn->getColor() );

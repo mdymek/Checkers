@@ -40,12 +40,12 @@ User::User( int id, sf::Color color, Board& board ):
 User::~User(){}
 
 void User::changePawn( int i, Pawn* pawn ){
-    //delete m_pawns[i];
+    delete m_pawns[i];
     m_pawns[i] = pawn;
 }
 
 void User::deletePawn( int i ){
-    //delete m_pawns[i];
+    delete m_pawns[i];
     m_pawns[i] = nullptr;
 }
 
