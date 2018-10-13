@@ -5,36 +5,22 @@
 void Man::checkOptionsCapture( int x, int y, bool& play, Board* board ){
     if ( DEBUG ) std::cout << "sprawdzam bicia" << std::endl;
     play = false;
-    if ( m_user->getId() == 1 ){
-        if ( x - 2 >= 0 && y - 2 >= 0 ){
-            if ( !board->get(x-1, y-1)->isFree() && board->get(x-1, y-1)->getPawn()->getUser() != m_user && board->get(x-2,y-2)->isFree()){
-                board->get(x-2,y-2)->setOption( m_square );
-                if ( DEBUG ) std::cout << "opcja " << x-2 << " " << y-2 << std::endl;
-                play = true;
-            }
-        }
-        if ( x + 1 < 10 && y - 1 >= 0 ){
-            if ( x + 2 < 10 && y - 2 >= 0 ){
-                if ( !board->get(x+1, y-1)->isFree() && board->get(x+1, y-1)->getPawn()->getUser() != m_user && board->get(x+2, y-2)->isFree() ){
-                    board->get(x+2, y-2)->setOption( m_square );
-                    if ( DEBUG ) std::cout << "opcja " << x+2 << " " << y-2 << std::endl;
-                    play = true;
-                }
-            }
+    int shift;
+    if ( m_user->getId() == 1 ) shift = -1;
+    else shift = 1;
+
+    if ( x - 2 >= 0 && y + 2*shift >= 0 ){
+        if ( !board->get(x - 1, y + shift)->isFree() && board->get(x - 1, y + shift)->getPawn()->getUser() != m_user && board->get(x - 2,y + 2*shift)->isFree()){
+            board->get(x - 2, y + 2*shift)->setOption( m_square );
+            if ( DEBUG ) std::cout << "opcja " << x-2 << " " << y + 2*shift << std::endl;
+            play = true;
         }
     }
-    else if ( m_user->getId() == 2 ){
-        if ( x + 2 < 10 && y + 2 < 10 ){
-            if ( !board->get(x+1, y+1)->isFree() && board->get(x+1, y+1)->getPawn()->getUser() != m_user && board->get(x+2,y+2)->isFree()){
-                board->get(x+2, y+2)->setOption( m_square );
-                if ( DEBUG ) std::cout << "opcja " << x+2 << " " << y+2 << std::endl;
-                play = true;
-            }
-        }
-        if ( x - 2 >= 0 && y + 2 < 10 ){
-            if ( !board->get(x-1, y+1)->isFree() && board->get(x-1, y+1)->getPawn()->getUser() != m_user && board->get(x-2, y+2)->isFree() ){
-                board->get(x-2, y+2)->setOption( m_square );
-                if ( DEBUG ) std::cout << "opcja " << x-2 << " " << y+2 << std::endl;
+    if ( x + 1 < 10 && y + shift >= 0 ){
+        if ( x + 2 < 10 && y + 2*shift >= 0 ){
+            if ( !board->get(x+1, y + shift)->isFree() && board->get(x+1, y + shift)->getPawn()->getUser() != m_user && board->get(x+2, y + 2*shift)->isFree() ){
+                board->get(x+2, y + 2*shift)->setOption( m_square );
+                if ( DEBUG ) std::cout << "opcja " << x+2 << " " << y + 2*shift << std::endl;
                 play = true;
             }
         }
@@ -44,29 +30,19 @@ void Man::checkOptionsCapture( int x, int y, bool& play, Board* board ){
 void Man::checkOptionsMove( int x, int y, bool& play, Board* board ){
     if ( DEBUG ) std::cout << "sprawdzam ruchy" << std::endl;
     if ( DEBUG ) std::cout << m_user->getId() << std::endl;
-    if ( m_user->getId() == 1 ){
-        if ( x - 1 >= 0 && y - 1 >= 0 && board->get(x-1, y-1)->isFree()){
-            board->get(x-1, y-1)->setOption( m_square );
-            if ( DEBUG ) std::cout << "opcja " << x-1 << " " << y-1 << std::endl;
-            play = true;
-        }
-        if ( x + 1 < 10 && y - 1 >= 0 && board->get(x+1, y-1)->isFree()){
-            board->get(x+1, y-1)->setOption( m_square );
-            if ( DEBUG ) std::cout << "opcja " << x+1 << " " << y-1 << std::endl;
-            play = true;
-        }
+    int shift;
+    if ( m_user->getId() == 1 ) shift = -1;
+    else shift = 1;
+
+    if ( x - 1 >= 0 && y + shift >= 0 && board->get(x - 1, y + shift)->isFree()){
+        board->get(x - 1, y + shift)->setOption( m_square );
+        if ( DEBUG ) std::cout << "opcja " << x-1 << " " << y + shift << std::endl;
+        play = true;
     }
-    else if ( m_user->getId() == 2 ){
-        if ( x + 1 < 10 && y + 1 < 10 && board->get(x+1, y+1)->isFree() ){
-            board->get(x+1, y+1)->setOption( m_square );
-            if ( DEBUG ) std::cout << "opcja " << x+1 << " " << y+1 << std::endl;
-            play = true;
-        }
-        if ( x - 1 >= 0 && y + 1 < 10 && board->get(x-1, y+1)->isFree() ){
-            board->get(x-1, y+1)->setOption( m_square );
-            if ( DEBUG ) std::cout << "opcja " << x-1 << " " << y+1 << std::endl;
-            play = true;
-        }
+    if ( x + 1 < 10 && y + shift >= 0 && board->get(x+1, y + shift)->isFree()){
+        board->get(x+1, y + shift)->setOption( m_square );
+        if ( DEBUG ) std::cout << "opcja " << x+1 << " " << y + shift << std::endl;
+        play = true;
     }
 }
 
