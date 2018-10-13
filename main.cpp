@@ -15,40 +15,44 @@ int main(){
     sf::RenderWindow window(sf::VideoMode(509,509), "checkers");
 
     bool first = true;
-    bool play = true;
+    Board::State state = Board::Play;
     int turn = 1;
     while ( window.isOpen() ){
-        while ( play ){
+        while ( state == Board::Play ){
             if( !wait ){
                 window.clear();
                 board.draw( window );
                 window.display();
                 wait = true;
             }
-
             sf::Event event;
             while( window.pollEvent(event) ){
                 if( event.type == sf::Event::Closed){
-                    play = false;
                     window.close();
                 }
                 else if( event.type == sf::Event::KeyPressed ){
                     if( event.key.code == sf::Keyboard::Escape ){
-                        play = false;
                         window.close();
                     }
                 }
                 else if( event.type == sf::Event::MouseButtonPressed ){
+                    //if ( state == Board::End ) window.close();
                     if ( DEBUG ) std::cout << "tura: " << turn << std::endl;
                     wait = false;
-                    play = board.checkSquare(event.mouseButton.x/51, event.mouseButton.y/51, (turn == 1 ? player1 : player2 ), first);
+                    state = board.checkSquare(event.mouseButton.x/51, event.mouseButton.y/51, (turn == 1 ? player1 : player2 ), first);
                 }
             }
         }
-
-        turn = ( turn == 1 ? 2 : 1 );
-        play = true;
-        first = true;
+        if ( player1->getNumber() == 0 || player2->getNumber() == 0 ){
+            std::cout << "END" << std::endl;
+            state = Board::End;
+            window.close();
+        }
+        else {
+            turn = ( turn == 1 ? 2 : 1 );
+            state = Board::Play;
+            first = true;
+        }
     }
     return 0;
 }

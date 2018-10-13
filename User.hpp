@@ -19,9 +19,11 @@ public:
 
     sf::Color getColor() const;
     int getId() const;
+    int getNumber() const;
     void reset();
 private:
     int m_id;
+    int m_num_pawns;
     std::vector<Pawn*> m_pawns;
     sf::Color m_color;
 };

@@ -10,12 +10,18 @@ class User;
 class Square;
 class Board {
 public:
+    enum State {
+        End = 0,
+        Change = 2,
+        Play = 4
+    };
+
     Board();
     ~Board();
 
     Square* get( int, int );
 
-    bool checkSquare( int, int, User*, bool& );
+    State checkSquare( int, int, User*, bool& );
     void deleteOptions();
     void movePawn( int, int );
     void draw( sf::RenderWindow& );

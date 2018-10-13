@@ -21,7 +21,7 @@ Board::~Board(){}
 
 Square* Board::get( int x, int y ){ return m_squares[x][y]; }
 
-bool Board::checkSquare( int x, int y, User* user, bool& first ){
+Board::State Board::checkSquare( int x, int y, User* user, bool& first ){
     if ( DEBUG ) std::cout << "kwadrat: " << x << " " << y << " pionek: " << ( m_squares[x][y]->isFree() ? -1 : m_squares[x][y]->getPawn()->getId()) << std::endl;
     bool play = true;
     if ( DEBUG ) std::cout << "user: " << user->getId() << std::endl;
@@ -47,7 +47,9 @@ bool Board::checkSquare( int x, int y, User* user, bool& first ){
         user->reset();
     }
     if ( DEBUG ) std::cout << "play: " << play << std::endl;
-    return play;
+
+    if ( play ) return Board::Play;
+    else return Board::Change;
 }
 
 void Board::deleteOptions(){
@@ -64,4 +66,11 @@ void Board::draw( sf::RenderWindow& window ){
             m_squares[x][y]->draw( window );
         }
     }
+    // if ( state == Board::End ){
+    //     sf::RectangleShape endCard;
+    //     endCard.setSize( sf::Vector2f(500, 500) );
+    //     endCard.setOrigin( sf::Vector2f(0,0) );
+    //     endCard.setPosition( sf::Vector2f(4, 4) );
+    //     endCard.setFillColor( sf::Color(255, 255, 255) );
+    // }
 }

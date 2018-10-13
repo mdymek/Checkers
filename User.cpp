@@ -3,6 +3,7 @@
 
 User::User( int id, sf::Color color, Board& board ):
     m_id( id ),
+    m_num_pawns( 20 ),
     m_color( color )
 {
     if ( id == 1 ){
@@ -47,10 +48,12 @@ void User::changePawn( int i, Pawn* pawn ){
 void User::deletePawn( int i ){
     delete m_pawns[i];
     m_pawns[i] = nullptr;
+    m_num_pawns--;
 }
 
 sf::Color User::getColor() const{ return m_color; }
 int User::getId() const{ return m_id; }
+int User::getNumber() const{ return m_num_pawns; }
 
 void User::reset(){
     for( int i = 0; i < 20; i++ ){
