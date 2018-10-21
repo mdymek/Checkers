@@ -30,18 +30,18 @@ void Square::addPawn( Pawn* pawn ) { m_pawn = pawn; }
 Pawn* Square::getPawn() const{ return m_pawn; }
 void Square::removePawn() { m_pawn = nullptr; }
 
-void Square::draw( sf::RenderWindow& window ){
+void Square::draw( sf::RenderTarget& target, sf::RenderStates states ) const{
     sf::Color color = m_shape.getFillColor();
     if ( m_isOption ){
         m_shape.setFillColor(sf::Color(73, 20, 20));
     }
-    window.draw( m_shape );
+    target.draw( m_shape, states );
     m_shape.setFillColor(color);
     if( m_pawn != nullptr ){
         sf::CircleShape pawn = m_pawn->getShape();
         pawn.setFillColor( m_pawn->getColor() );
         pawn.setOrigin(0,0);
         pawn.setPosition(m_position.x*51, m_position.y*51);
-        window.draw( pawn );
+        target.draw( pawn, states );
     }
 }
