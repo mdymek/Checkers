@@ -5,7 +5,7 @@
 
 class User;
 class Pawn;
-class Square {
+class Square : public sf::Drawable {
 public:
     Square( sf::Vector2f, sf::Color );
     ~Square();
@@ -21,12 +21,12 @@ public:
     Pawn* getPawn() const;
     void removePawn();
 
-    void draw( sf::RenderWindow& );
+    void draw( sf::RenderTarget&, sf::RenderStates ) const;
 private:
     bool m_isOption;
     Square* m_option;
     sf::Vector2f m_position;
-    sf::RectangleShape m_shape;
+    mutable sf::RectangleShape m_shape;
     Pawn* m_pawn;
 };
 #endif

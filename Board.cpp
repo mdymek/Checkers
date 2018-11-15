@@ -60,10 +60,10 @@ void Board::deleteOptions(){
     }
 }
 
-void Board::draw( sf::RenderWindow& window ){
+void Board::draw( sf::RenderTarget& target, sf::RenderStates states ) const{
     for ( int x = 0; x < 10; x++ ){
         for ( int y = 0; y < 10; y++ ){
-            m_squares[x][y]->draw( window );
+            target.draw( *m_squares[x][y], states );
         }
     }
     // if ( state == Board::End ){

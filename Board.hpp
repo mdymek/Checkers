@@ -8,7 +8,7 @@
 
 class User;
 class Square;
-class Board {
+class Board : public sf::Drawable {
 public:
     enum State {
         End = 0,
@@ -24,7 +24,7 @@ public:
     State checkSquare( int, int, User*, bool& );
     void deleteOptions();
     void movePawn( int, int );
-    void draw( sf::RenderWindow& );
+    void draw( sf::RenderTarget&, sf::RenderStates ) const;
 private:
     std::vector < std::vector <Square*> > m_squares;
 };
